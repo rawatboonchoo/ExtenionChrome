@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Google Forms</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <div>
+                <strong>Test Google Form</strong>
+            </div>
+            <form id="form" target="_self" onsubmit="" action="">
+                <fieldset>
+                    <label>Text</label>
+                    <textarea id="feed" name="feed"></textarea>
+                </fieldset>
+                <div style="width: 100%; display: block; float: right;">
+                    <button id="send" type="submit">
+                        Send
+                    </button>
+                </div>
+            </form>
+
+<hr>
+
+            <div style="width: 100%; display: block; float: right;">
+                <button id="send" type="submit" onclick="sendGoogleforms();">
+                    Send form XMLHttpRequest()
+                </button>
+            </div>
+        </div>
+        <hr>
+        <script type="text/javascript">
+        function sendGoogleforms(){
+            /*var request = new XMLHttpRequest();
+            var url = 'https://docs.google.com/forms/d/e/1FAIpQLSfoUPfPzTlin6UuKb4_RpHGFWjRsQinTitS-ljfoLhJASKUkQ/formResponse';
+            var data = JSON.stringify({"entry.1127049891":"ฉันอยากบันทึกข้อมูลลง google forms"});
+            request.open('POST', url, true);
+            //request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            //request.setRequestHeader('Content-Type', 'charset=UTF-8');
+            //request.setRequestHeader('Content-Type', 'text/xml');
+            //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            //xmlhttp.setRequestHeader('charset', 'UTF-8');
+            request.send(data);*/
+            var request = new XMLHttpRequest();
+            var url = 'http://localhost/extension/getkey/sendtest.php';
+            var data = { 'entry.1127049891': 'ฉันอยากไปโรงเรียน'};
+            request.open('POST', url, true);
+            //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            //request.setRequestHeader('Content-Type', 'text/xml');
+            //xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //xmlhttp.setRequestHeader('charset', 'UTF-8');
+            request.send(JSON.stringify(data));
+
+           
+                
+        }
+        //sendGoogleforms('Hello Techer');
+
+
+            function postToGoogle() {
+                var field3 = $('#feed').val();
+                $.ajax({
+                    url: "http://localhost/extension/getkey/sendtest.php",
+                    data: {"entry.1127049891": field3},
+                    type: "POST",
+                    dataType: "json",
+                    statusCode: {
+                        0: function() {
+                           // //Success message
+                            //console.log(data);
+                            
+                        },
+                        200: function() {
+                            //Success Message
+                           // console.log(data);
+                        }
+                    }
+                });
+            }
+            $(document).ready(function(){
+                $('#form').submit(function() {
+                    postToGoogle();
+                    return false;
+                });
+            });
+
+
+        </script>
+    </body>
+</html>

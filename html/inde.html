@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Google Forms</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <div>
+                <strong>Test Google Form</strong>
+            </div>
+            <form id="form" target="_self" onsubmit="" action="">
+                <fieldset>
+                    <label>Text</label>
+                    <textarea id="feed" name="feed"></textarea>
+                </fieldset>
+                <div style="width: 100%; display: block; float: right;">
+                    <button id="send" type="submit">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+        function sendGoogleforms(xxx){
+            var request = new XMLHttpRequest();
+            var url = 'https://docs.google.com/forms/d/e/1FAIpQLSfoUPfPzTlin6UuKb4_RpHGFWjRsQinTitS-ljfoLhJASKUkQ/formResponse';
+            var data = { "entry.1127049891": xxx};
+            request.open('POST', url, true);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            //request.setRequestHeader('Content-Type', 'text/xml');
+            //xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //xmlhttp.setRequestHeader('charset', 'UTF-8');
+            request.send(data);
+        }
+        sendGoogleforms('สวัสดีครับคุณครู');
+
+
+            function postToGoogle() {
+                var field3 = $('#feed').val();
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSfoUPfPzTlin6UuKb4_RpHGFWjRsQinTitS-ljfoLhJASKUkQ/formResponse",
+                    data: {"entry.1127049891": field3},
+                    type: "POST",
+                    dataType: "json",
+                });
+            }
+            $(document).ready(function(){
+                $('#form').submit(function() {
+                    postToGoogle();
+                    return false;
+                });
+            });
+
+
+        </script>
+    </body>
+</html>

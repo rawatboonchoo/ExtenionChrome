@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "Ext_setuser",
+    "description": "test set user form",
+    "version": "1.0.0",
+    "browser_action": {
+        "default_icon": "icon.png"
+      },
+       "content_scripts": [ {
+          "all_frames": true,
+          "js": ["index.js","jquery.min.js"],
+          "matches": [ "http://*/*", "https://*/*" ]
+       } ],
+      "permissions": [
+         "http://*/*", 
+         "https://*/*"
+    ],
+    "web_accessible_resources": ["Embedded_Hello_world.htm"]
+  }
